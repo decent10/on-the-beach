@@ -1,0 +1,24 @@
+.button{
+    background: #FFD700;
+    outline: none;
+    border: none;
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+.title{
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+.amountWrapper{
+    display: flex;
+  justify-content: center;
+    align-items: center;
+}
+.amount{
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}

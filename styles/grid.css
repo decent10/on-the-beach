@@ -1,0 +1,82 @@
+/*# 
+create  a grid with  a total of 12 columns 
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+@media screen and (min-width: 600px) {
+  
+
+.span-2 {
+  grid-column: span 2/ auto;
+}
+/*#
+ span 3 columns
+
+*/
+.span-3 {
+  grid-column: span 3/ auto;
+}
+/*#
+ span 4 columns
+
+*/ 
+.span-4 {
+  grid-column: span 4/ auto;
+}
+/*#
+ span 5 columns
+
+*/
+.span-5 {
+  grid-column: span 5/  auto;
+}
+
+/*#
+ span 6 columns
+
+*/      
+.span-6 {
+  grid-column: span 6/ auto;
+}
+/*#
+ span 7 columns
+
+*/
+.span-7 {
+  grid-column: span 7/ auto;
+}
+/*#
+ span 8 columns
+
+*/  
+
+.span-8 {
+  grid-column: span 8/ auto;
+}
+/*#
+ span 9 columns
+
+*/
+.span-9 {
+  grid-column: span 9/ auto;
+}
+/*#
+ span 10 columns
+
+*/
+
+.span-10 {
+  grid-column: span 10/ auto;
+}
+/*#
+ span 11 columns
+
+*/  .span-11 {
+  grid-column: span 11/ auto;
+}
+}
+    
+
