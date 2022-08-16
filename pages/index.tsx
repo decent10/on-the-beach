@@ -4,8 +4,12 @@ import Image from "next/future/image";
 import styles from "../styles/Home.module.css";
 import React from "react";
 import HotelItem from "../components/HotelItem/HotelItem";
+import SortAlpha from "../components/Icons/SortAlpha";
+import Currency from "../components/Icons/Currency";
+import Star from "../components/Icons/Star";
+import SortItem from "../components/SortItem/SortItem";
 
-const hotelItems = [
+const hotelItemList = [
   {
     id: 1,
     title: "Iberostar Grand Salomé",
@@ -48,10 +52,57 @@ const hotelItems = [
     },
   },
 ];
+const sortItemList = [
+  {
+    id: 1,
+    label: "alphabetically",
+    icon: <SortAlpha />,
+    active: true,
+  },
+  {
+    id: 2,
+    label: "price",
+    icon: <Currency />,
+    active: false,
+  },
+  {
+    id: 3,
+    label: "rating",
+    icon: <Star />,
+    active: false,
+  },
+];
 
 const Home: NextPage = () => {
-  const [selectedHotel, setSelectedHotel] = React.useState(null);
+  const [hotelItems, setHotelItems] = React.useState(hotelItemList);
   const [readMore, setReadMore] = React.useState(false);
+  const [sortItems, setSortItems] = React.useState(sortItemList);
+
+  const sortByParam = (sortBy: string) => {
+    return hotelItems.sort((a, b) => {
+      if (sortBy === "alphabetically") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "price") {
+        return a.cta.amount - b.cta.amount;
+      } else if (sortBy === "rating") {
+        return a.rating - b.rating;
+      }
+    });
+  };
+  const onSortItemClick = (id: number) => {
+    const newSortItems = sortItems.map((item) => {
+      if (item.id === id) {
+        return { ...item, active: true };
+      }
+      return { ...item, active: false };
+    });
+    const sortedResult = sortByParam(newSortItems[id - 1].label);
+    console.log(sortedResult);
+    setHotelItems(sortedResult);
+
+    setSortItems(newSortItems);
+  };
+
   return (
     <div className="container">
       <Head>
@@ -63,8 +114,17 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <section className="grid">
           <div className={`${styles.card} `}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+            <ul className={styles.sortNav}>
+              {sortItems.map((item) => (
+                <SortItem
+                  key={item.id}
+                  {...item}
+                  onClick={() => {
+                    onSortItemClick(item.id);
+                  }}
+                />
+              ))}
+            </ul>
           </div>
           <div className={`${styles.card} span-2`}>
             {hotelItems.map((hotelItem) => (

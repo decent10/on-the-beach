@@ -68,6 +68,11 @@
   flex-wrap: wrap;
   max-width: 800px;
 } */
+.sortNav {
+list-style: none;
+padding:0;
+margin:0;
+}
 
 
 .card {

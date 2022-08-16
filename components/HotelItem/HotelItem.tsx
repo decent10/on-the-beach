@@ -72,7 +72,7 @@ export default function HotelItem({
         </div>
         {readMore && (
           <div className="span-2">
-            <div>{description}</div>
+            <div className={styles.hotelItemDescription}>{description}</div>
           </div>
         )}
       </div>
