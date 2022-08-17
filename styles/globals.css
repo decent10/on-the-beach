@@ -6,25 +6,51 @@
 
 @import url('normalize.css');
 @import url('grid.css');
+* {
+  box-sizing: border-box;
+}
 html,
 body {
-  padding: 0;
-  margin: 0;
- 
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    color: #313137;
+    font-family: BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
     background:  url('/assets/background.png');
     background-size: cover;
+    scroll-behavior: smooth;
 }
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 600;
 
+}
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.2rem;
+}
+h4 {
+    font-size: 1rem;
+}
+h5 {
+    font-size: 1rem;
+}
+h6 {
+    font-size: 0.8rem;
+}
+p {
+    margin: 0;
+}
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+
+
+
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -38,7 +64,6 @@ a {
 
 .container{
   max-width: 1200px;
-   padding:  2rem;
    margin:  0 auto;
 }
 
@@ -48,3 +73,10 @@ a {
 .textBlue{
   color: #1D307A;
 }
+@media screen and (min-width: 600px) {
+  .container{
+    
+    padding: 2rem;
+  }
+}
+  

@@ -2,10 +2,11 @@
 create  a grid with  a total of 12 columns 
 */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 1rem;
+  display: block;
+  padding-bottom: 10px;
+ 
 }
+
 @media screen and (min-width: 600px) {
   
 
@@ -79,4 +80,86 @@ create  a grid with  a total of 12 columns
 }
 }
     
+
+
+
+/*
+mobile  media query
+*/  
+
+@media screen and (max-width: 600px) {
+  
+  .span-2 {
+    grid-column: span 2/ auto;
+  }
+  .span-3 {
+    grid-column: span 3/ auto;
+  }
+  .span-4 {
+    grid-column: span 4/ auto;
+  }
+  .span-5 {
+    grid-column: span 5/  auto;
+  }
+  .span-6 {
+    grid-column: span 6/ auto;
+  }
+  .span-7 {
+    grid-column: span 7/ auto;
+  }
+  .span-8 {
+    grid-column: span 8/ auto;
+  }
+  .span-9 {
+    grid-column: span 9/ auto;
+  }
+  .span-10 {
+    grid-column: span 10/ auto;
+  }
+  .span-11 {
+    grid-column: span 11/ auto;
+  }
+}
+/*#
+ tablet media query
+
+*/
+@media screen and (min-width: 600px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
+     padding-bottom: 0px;
+  }
+  .span-2 {
+    grid-column: span 2/ auto;
+  }
+  .span-3 {
+    grid-column: span 3/ auto;
+  }
+  .span-4 {
+    grid-column: span 4/ auto;
+  }
+  .span-5 {
+    grid-column: span 5/  auto;
+  }
+  .span-6 {
+    grid-column: span 6/ auto;
+  }
+  .span-7 {
+    grid-column: span 7/ auto;
+  }
+  .span-8 {
+    grid-column: span 8/ auto;
+  }
+  .span-9 {
+    grid-column: span 9/ auto;
+  }
+  .span-10 {
+    grid-column: span 10/ auto;
+  }
+  .span-11 {
+    grid-column: span 11/ auto;
+  }
+}
 

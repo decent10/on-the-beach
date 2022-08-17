@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactHTMLElement } from "react";
 import CTAButton from "../CTA/CTA";
 import { Close } from "../Icons/Close";
 import { Open } from "../Icons/Open";
@@ -24,7 +24,8 @@ export default function HotelItem({
   cta,
 }: HotelItemProps) {
   const [readMore, setReadMore] = React.useState(false);
-  const toggleReadMore = () => {
+  const toggleReadMore = (e: React.FormEvent) => {
+    e.preventDefault();
     setReadMore(!readMore);
   };
 
@@ -40,11 +41,11 @@ export default function HotelItem({
           >
             {readMore ? (
               <>
-                Read less about this hotel <Open />
+                <strong> Read less </strong> about this hotel <Open />
               </>
             ) : (
               <>
-                Read more about this hotel <Close />
+                <strong>Read more </strong> about this hotel <Close />
               </>
             )}
           </a>
@@ -71,8 +72,9 @@ export default function HotelItem({
           <CTAButton title={cta.title} amount={cta.amount} />
         </div>
         {readMore && (
-          <div className="span-2">
-            <div className={styles.hotelItemDescription}>{description}</div>
+          <div className={[styles.descriptionWrapper, "span-2"].join(" ")}>
+            <h3 className="textBlue">Overview</h3>
+            <p className={styles.hotelItemDescription}>{description}</p>
           </div>
         )}
       </div>

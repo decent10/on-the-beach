@@ -11,31 +11,31 @@ import SortItem from "../components/SortItem/SortItem";
 
 const hotelItemList = [
   {
-    id: 1,
-    title: "Iberostar Grand Salomé",
-    location: "Costa Teguise, Lanzarote, Spain",
-
-    rating: 4,
-    image: "/assets/hotel-image-1.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    cta: {
-      title: "Book now",
-      amount: 100,
-    },
-  },
-  {
     id: 2,
     title: "Alua Atlántico Golf Resort",
     location: "Lara, Antalya, Turkey",
 
-    rating: 5,
+    rating: 4,
     image: "/assets/hotel-image-2.png",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Designed to combine indulgence with inclusivity, the Royal Hideaway Corales Suites, part of Barceló Hotel Group are situated in a five-star hotel that extends a warm welcome to families, friends and couples. Its tasteful design and beautiful landscape set the scene for a memorable, happy holiday with easy access to stunning beaches of Costa Adeja and a wide range of entertainment.",
     cta: {
       title: "Book now",
-      amount: 200,
+      amount: 686.8,
+    },
+  },
+  {
+    id: 1,
+    title: "Iberostar Grand Salomé",
+    location: "Costa Teguise, Lanzarote, Spain",
+
+    rating: 5,
+    image: "/assets/hotel-image-1.png",
+    description:
+      "The hotel offers luxury holiday accommodation close to the ancient city of Paphos. The adjacent ancient Tombs of the Kings provided the design inspiration for the Elysium. Different elements of the resort suggest different spirits, ages and energies including the mysticism of Byzantium, the opulence of Venice and the vitality of the Mediterranean. The resort is intended to offer the visitor a series of experiences that contemplate the rich history of the island.",
+    cta: {
+      title: "Book now",
+      amount: 1136.5,
     },
   },
   {
@@ -45,10 +45,10 @@ const hotelItemList = [
     rating: 3,
     image: "/assets/hotel-image-3.png",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Atrium Palace Thalasso Spa and Villas is truly worthy of its five-star rating. A beachfront location, six swimming pools and luxury dining experiences are just some of the hotel’s upscale amenities. With views over Kalathos Bay, which has earned the Blue Flag for quality, and entertainment for all ages, this property is the perfect place to infuse your Rhodes holiday with more than a bit of luxury.",
     cta: {
       title: "Book now",
-      amount: 300,
+      amount: 499.99,
     },
   },
 ];
@@ -75,8 +75,10 @@ const sortItemList = [
 
 const Home: NextPage = () => {
   const [hotelItems, setHotelItems] = React.useState(hotelItemList);
-  const [readMore, setReadMore] = React.useState(false);
   const [sortItems, setSortItems] = React.useState(sortItemList);
+  const [selectSortItem, setSelectSortItem] = React.useState<number>(
+    sortItemList[0].id
+  );
 
   const sortByParam = (sortBy: string) => {
     return hotelItems.sort((a, b) => {
@@ -85,22 +87,14 @@ const Home: NextPage = () => {
       } else if (sortBy === "price") {
         return a.cta.amount - b.cta.amount;
       } else if (sortBy === "rating") {
-        return a.rating - b.rating;
+        return b.rating - a.rating;
       }
     });
   };
   const onSortItemClick = (id: number) => {
-    const newSortItems = sortItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, active: true };
-      }
-      return { ...item, active: false };
-    });
-    const sortedResult = sortByParam(newSortItems[id - 1].label);
-    console.log(sortedResult);
+    setSelectSortItem(id);
+    const sortedResult = sortByParam(sortItems[id - 1].label);
     setHotelItems(sortedResult);
-
-    setSortItems(newSortItems);
   };
 
   return (
@@ -117,6 +111,7 @@ const Home: NextPage = () => {
             <ul className={styles.sortNav}>
               {sortItems.map((item) => (
                 <SortItem
+                  selectedItemIndex={selectSortItem}
                   key={item.id}
                   {...item}
                   onClick={() => {
@@ -133,19 +128,6 @@ const Home: NextPage = () => {
           </div>
         </section>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };
