@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "./SortItem.module.css";
 type SortItemProps = {
   id: number;
@@ -17,7 +18,10 @@ const SortItem = ({
 }: SortItemProps) => {
   const isSelected = selectedItemIndex === id;
   return (
-    <li
+    <motion.li
+      whileHover={{
+        scale: 0.98,
+      }}
       onClick={onClick}
       className={[
         styles.sortItem,
@@ -30,7 +34,7 @@ const SortItem = ({
         Sort by <strong>{label}</strong>
       </span>
       {icon}
-    </li>
+    </motion.li>
   );
 };
 

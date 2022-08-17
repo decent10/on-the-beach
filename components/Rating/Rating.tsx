@@ -8,7 +8,16 @@ export default function Rating({ numberOfStars = 5 }: RatingProps) {
   return (
     <section className={styles.wrapper}>
       {[...Array(numberOfStars)].map((_, index) => (
-        <Star key={index} width={18} height={18} />
+        <Star
+          whileHover={{
+            scale: 1.1,
+            width: "20px",
+            height: "20px",
+          }}
+          key={index}
+          width={18}
+          height={18}
+        />
       ))}
     </section>
   );

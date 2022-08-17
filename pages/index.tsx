@@ -1,99 +1,27 @@
 import type { NextPage } from "next";
+import { motion } from "framer-motion";
 import Head from "next/head";
-import Image from "next/future/image";
 import styles from "../styles/Home.module.css";
 import React from "react";
 import HotelItem from "../components/HotelItem/HotelItem";
-import SortAlpha from "../components/Icons/SortAlpha";
-import Currency from "../components/Icons/Currency";
-import Star from "../components/Icons/Star";
 import SortItem from "../components/SortItem/SortItem";
+import { HotelItemType } from "../types";
+import { sortByColumn } from "../utils";
 
-const hotelItemList = [
-  {
-    id: 2,
-    title: "Alua Atlántico Golf Resort",
-    location: "Lara, Antalya, Turkey",
-
-    rating: 4,
-    image: "/assets/hotel-image-2.png",
-    description:
-      "Designed to combine indulgence with inclusivity, the Royal Hideaway Corales Suites, part of Barceló Hotel Group are situated in a five-star hotel that extends a warm welcome to families, friends and couples. Its tasteful design and beautiful landscape set the scene for a memorable, happy holiday with easy access to stunning beaches of Costa Adeja and a wide range of entertainment.",
-    cta: {
-      title: "Book now",
-      amount: 686.8,
-    },
-  },
-  {
-    id: 1,
-    title: "Iberostar Grand Salomé",
-    location: "Costa Teguise, Lanzarote, Spain",
-
-    rating: 5,
-    image: "/assets/hotel-image-1.png",
-    description:
-      "The hotel offers luxury holiday accommodation close to the ancient city of Paphos. The adjacent ancient Tombs of the Kings provided the design inspiration for the Elysium. Different elements of the resort suggest different spirits, ages and energies including the mysticism of Byzantium, the opulence of Venice and the vitality of the Mediterranean. The resort is intended to offer the visitor a series of experiences that contemplate the rich history of the island.",
-    cta: {
-      title: "Book now",
-      amount: 1136.5,
-    },
-  },
-  {
-    id: 3,
-    title: "Las Piramides Resort",
-    location: "Ayia Napa, Larnaca, Cyprus",
-    rating: 3,
-    image: "/assets/hotel-image-3.png",
-    description:
-      "Atrium Palace Thalasso Spa and Villas is truly worthy of its five-star rating. A beachfront location, six swimming pools and luxury dining experiences are just some of the hotel’s upscale amenities. With views over Kalathos Bay, which has earned the Blue Flag for quality, and entertainment for all ages, this property is the perfect place to infuse your Rhodes holiday with more than a bit of luxury.",
-    cta: {
-      title: "Book now",
-      amount: 499.99,
-    },
-  },
-];
-const sortItemList = [
-  {
-    id: 1,
-    label: "alphabetically",
-    icon: <SortAlpha />,
-    active: true,
-  },
-  {
-    id: 2,
-    label: "price",
-    icon: <Currency />,
-    active: false,
-  },
-  {
-    id: 3,
-    label: "rating",
-    icon: <Star />,
-    active: false,
-  },
-];
+import { hotelItemList, sortItemList } from "../data";
 
 const Home: NextPage = () => {
-  const [hotelItems, setHotelItems] = React.useState(hotelItemList);
+  const [hotelItems, setHotelItems] =
+    React.useState<HotelItemType[]>(hotelItemList);
   const [sortItems, setSortItems] = React.useState(sortItemList);
   const [selectSortItem, setSelectSortItem] = React.useState<number>(
     sortItemList[0].id
   );
 
-  const sortByParam = (sortBy: string) => {
-    return hotelItems.sort((a, b) => {
-      if (sortBy === "alphabetically") {
-        return a.title.localeCompare(b.title);
-      } else if (sortBy === "price") {
-        return a.cta.amount - b.cta.amount;
-      } else if (sortBy === "rating") {
-        return b.rating - a.rating;
-      }
-    });
-  };
   const onSortItemClick = (id: number) => {
     setSelectSortItem(id);
-    const sortedResult = sortByParam(sortItems[id - 1].label);
+
+    const sortedResult = sortByColumn(hotelItems, sortItems[id - 1].label);
     setHotelItems(sortedResult);
   };
 
@@ -122,8 +50,16 @@ const Home: NextPage = () => {
             </ul>
           </div>
           <div className={`${styles.card} span-2`}>
-            {hotelItems.map((hotelItem) => (
-              <HotelItem key={hotelItem.id} {...hotelItem} />
+            {hotelItems.map((hotelItem, index) => (
+              <motion.div
+                key={hotelItem.id}
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -20 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2, delay: 0.2 * index }}
+              >
+                <HotelItem {...hotelItem} />
+              </motion.div>
             ))}
           </div>
         </section>

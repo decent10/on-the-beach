@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "./CTA.module.css";
 type CTAProps = {
   title: string;
@@ -6,7 +7,16 @@ type CTAProps = {
 };
 export default function CTAButton({ title, amount }: CTAProps) {
   return (
-    <button className={[styles.button, "textBlue"].join(" ")}>
+    <motion.a
+      href="#"
+      className={[styles.button, "textBlue"].join(" ")}
+      whileHover={{
+        scale: 0.98,
+        cursor: "pointer",
+        translateX: 5,
+        translateY: 5,
+      }}
+    >
       <div>
         <div className={styles.title}>{title}</div>
         <div className={styles.amountWrapper}>
@@ -15,6 +25,6 @@ export default function CTAButton({ title, amount }: CTAProps) {
           </div>
         </div>
       </div>
-    </button>
+    </motion.a>
   );
 }

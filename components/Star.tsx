@@ -1,15 +1,11 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 type StarProps = {
   width?: number;
   height?: number;
   fill?: string;
 };
-export default function Star({
-  width = 24,
-  height = 24,
-  fill = "#FFD700",
-}: StarProps) {
+function Star({ width = 24, height = 24, fill = "#FFD700" }: StarProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,3 +23,5 @@ export default function Star({
     </svg>
   );
 }
+
+export default motion(Star);
