@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import HotelItem from "../components/HotelItem/HotelItem";
-import SortItem from "../components/SortItem/SortItem";
 import { HotelItemType } from "../types";
 import { sortByColumn } from "../utils";
 import { hotelItemList, sortItemList } from "../data";
+import SortMenu from "../components/SortMenu/SortMenu";
 
 const Home: NextPage = () => {
   const [hotelItems, setHotelItems] =
@@ -34,21 +34,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <section className="grid">
           <div className={`${styles.card} `}>
-            <ul className={styles.sortNav}>
-              {sortItems.map((item) => (
-                <SortItem
-                  selectedItemIndex={selectSortItem}
-                  key={item.id}
-                  {...item}
-                  onClick={() => {
-                    onSortItemClick(item.id);
-                  }}
-                />
-              ))}
-            </ul>
+            <SortMenu
+              sortItems={sortItems}
+              onClick={onSortItemClick}
+              selectedItemIndex={selectSortItem}
+            />
           </div>
           <div className={`${styles.card} span-2`}>
             {hotelItems.map((hotelItem, index) => (
@@ -57,7 +50,7 @@ const Home: NextPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: -20 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.2, delay: 0.2 * index }}
+                transition={{ delay: 0.2 * index }}
               >
                 <HotelItem {...hotelItem} />
               </motion.div>

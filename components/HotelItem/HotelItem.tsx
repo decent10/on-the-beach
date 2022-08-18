@@ -1,4 +1,4 @@
-import React, { ReactHTMLElement } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import CTAButton from "../CTA/CTA";
 import { Close } from "../Icons/Close";
