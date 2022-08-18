@@ -22,5 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [Next.js](https://nextjs.org/) - Use Nextjs client side rendering.
 - [Framer motion](https://www.framer.com/motion/) - Used for  animating some of the component
+- [heroicons](https://heroicons.com/) - Use icons from here
+
 
 
