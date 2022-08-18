@@ -1,5 +1,4 @@
 
-
 .hotelItem{
     background-color: #fff;
     margin-bottom: 2rem;
@@ -7,6 +6,7 @@
 
 .hotelItemImage{
    max-width: 100%;
+   width: 100%;
    min-height: 280px;
    height: 100%;
    object-fit: fill;

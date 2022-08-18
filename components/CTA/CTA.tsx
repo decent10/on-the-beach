@@ -17,14 +17,12 @@ export default function CTAButton({ title, amount }: CTAProps) {
         translateY: 5,
       }}
     >
-      <div>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.amountWrapper}>
-          <div className={styles.amount}>
-            £ {amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
-          </div>
-        </div>
-      </div>
+      <span className={styles.title}>{title}</span>
+      <span className={styles.amountWrapper}>
+        <span className={styles.amount}>
+          £ {amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+        </span>
+      </span>
     </motion.a>
   );
 }
